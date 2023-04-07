@@ -25,9 +25,9 @@ Server:
 * DELETE: deleteSet function, delete a set of strings (5 pts)
 * Use controller file to keep functions neat (5 pts)
 
-
+List of MVP Features (5 pts)
 Wireframe (5 pts)
-Presentation (5 pts)
+Presentation (discusses purpose and demonstrates MVP, between 2-3 min, 10 pts)
 
 ////////////
 TO CODE:
