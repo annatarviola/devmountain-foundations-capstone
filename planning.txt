@@ -1,29 +1,33 @@
 ﻿myStrings: Viola
 
-MVP FEATURES:
+MVP FEATURES (5 pts):
 
-* Users can enter information about new sets of strings
-* Users can save the info about the strings and have them display
+* Users can enter information about new sets of strings (front end is interactive, 5 pts)
+* Users can save the info about the strings and have them display (front end makes a request to the server and handles the response, 5 pts)
 * User can edit and delete past sets of strings
 
 Front End: 
-* Semantic tags: 
+* Semantic tags (5 pts): 
    - <header> 
    - <main> 
    - <form> (for "Add New Set")
    - <section> (for "My Strings")
    - <details> (to show and hide "My Strings" cards)
-* Views:
-   - Homepage
-* Styling: Strings cards styled and displayed using flexbox
+* Views (5 pts):
+   - Homepage (styling will be responsive, 5 pts)
+   - "My Strings" potentially on another page?
+* Styling: Strings cards custom styled (5 pts) and displayed using flexbox (5 pts) 
 
 Server:
-* GET: getAllSets function, displays all sets of strings saved
-* POST: addSet function, submitted through the form to add a new set of strings
-* PUT: updateSet function, update info on any set of strings
-* DELETE: deleteSet function, delete a set of strings 
-* Use controller file to keep functions neat
+* GET: getAllSets function, displays all sets of strings saved (5 pts)
+* POST: addSet function, submitted through the form to add a new set of strings (5 pts)
+* PUT: updateSet function, update info on any set of strings (5 pts)
+* DELETE: deleteSet function, delete a set of strings (5 pts)
+* Use controller file to keep functions neat (5 pts)
 
+
+Wireframe (5 pts)
+Presentation (5 pts)
 
 ////////////
 TO CODE:
