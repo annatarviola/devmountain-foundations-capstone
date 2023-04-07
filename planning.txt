@@ -1,0 +1,53 @@
+﻿myStrings: Viola
+
+MVP FEATURES:
+
+* Users can enter information about new sets of strings
+* Users can save the info about the strings and have them display
+* User can edit and delete past sets of strings
+
+Front End: 
+* Semantic tags: 
+   - <header> 
+   - <main> 
+   - <form> (for "Add New Set")
+   - <section> (for "My Strings")
+   - <details> (to show and hide "My Strings" cards)
+* Views:
+   - Homepage
+* Styling: Strings cards styled and displayed using flexbox
+
+Server:
+* GET: getAllSets function, displays all sets of strings saved
+* POST: addSet function, submitted through the form to add a new set of strings
+* PUT: updateSet function, update info on any set of strings
+* DELETE: deleteSet function, delete a set of strings 
+* Use controller file to keep functions neat
+
+
+////////////
+TO CODE:
+
+* "Add New Set" button will add a new object to an array to describe a set of strings, sent in through a form
+   
+   { 
+     brandName: string (REQUIRED)
+     imgURL: string 
+     date: string ? (REQUIRED)
+     tension: string 
+     strings: string (lol)
+     toneQuality: integer
+     projection: integer
+     rating: integer
+     userNotes: string
+   }
+
+   - Make sure that form won't submit until string brand name and date are put in
+   - Build out a slider for tone quality (warmth <-> brilliance)
+   
+* After new set is added, a card will be created and displayed for the new set of strings in the "My Strings" section
+   - Build card in inner HTML
+   - Populate with form submissions (axios)
+   - Add to section
+   - "Update Set Info" button -> updateSet function to change any info
+   - "Delete Set" button -> deleteSet to delete a set card
