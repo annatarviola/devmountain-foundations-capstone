@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(#f2deff, #8a7bb4);
+  background-attachment: fixed;
+}
+
+header {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(0, 0, 0);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  background: linear-gradient(rgb(255, 236, 200), rgb(255, 198, 92));
+  width: 350px;
+  height: auto;
+  margin: 30px;
+  padding: 15px 30px 15px 30px;
+  border-radius: 10px;
+  outline-style: outset;
+  outline-width: 6px;
+  outline-color: rgb(255, 237, 205);
+  position: relative;
+  font-weight: 400;
+}
+
+.form-group {
+  margin: 15px;
+}
+
+.currency-wrap {
+  position: relative;
+}
+
+.currency-code {
+  position: absolute;
+  left: 8px;
+  top: 7px;
+}
+
+input {
+  font-size: medium;
+  width: 92%;
+  height: 30px;
+  border: none;
+  border-bottom: 2px solid #d4d4d4;
+  border-radius: 5px;
+  color: #232323;
+  background-color: snow;
+  padding: 3px 10px 3px 10px;
+  box-shadow: outset;
+}
+
+#price {
+  padding-left: 20px;
+  width: 89%;
+}
+
+textarea {
+  max-width: 94%;
+  min-width: 94%;
+  height: 80px;
+  min-height: fit-content;
+  max-height: 200px;
+  padding: 6px;
+  border-radius: 5px;
+}
+
+select {
+  padding: 3px;
+  border-radius: 5%;
+  box-shadow: outset;
+}
+
+button {
+  width: auto;
+  height: auto;
+  font-weight: bolder;
+  padding: 5px 10px 5px 10px;
+  border: outset;
+  border-color: rgb(147, 157, 140);
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background: #3f7552;
+  position: relative;
+  left: 33%
+}
+
+button:hover {
+  border: inset;
+  border-color: rgb(147, 157, 140);
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background: #45624f;
+}

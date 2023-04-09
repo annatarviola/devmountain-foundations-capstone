@@ -55,3 +55,12 @@ TO CODE:
    - Add to section
    - "Update Set Info" button -> updateSet function to change any info
    - "Delete Set" button -> deleteSet to delete a set card
+
+* Possibly adding slider later: 
+   <div class="form-group">
+            <datalist id="warmth-brilliance">
+              <option value="0" label="Warm"></option>
+              <option value="20" label="Brilliant"></option>
+            </datalist>
+            <input type="range" max="20" name="toneQuality" class="slider"/>
+          </div>
