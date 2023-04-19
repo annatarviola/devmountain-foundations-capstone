@@ -1,16 +1,16 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
 }
 
 body {
-  background: linear-gradient(#f2deff, #8a7bb4);
+  background-color: rgb(255, 245, 232);
   background-attachment: fixed;
 }
 
 header {
-  height: 80px;
+  margin: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,21 +19,55 @@ header {
 
 main {
   display: flex;
+  flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+h2 {
+  color: #274933;
+  text-align: center;
+}
+
+#my-strings h2 {
+  margin-bottom: 20px;
+}
+
+.label {
+  font-weight: 900;
+  color: #274933;
 }
 
 .container {
-  background: linear-gradient(rgb(255, 236, 200), rgb(255, 198, 92));
+  background: linear-gradient(rgb(255, 245, 205), rgb(255, 210, 126));
   width: 350px;
   height: auto;
   margin: 30px;
   padding: 15px 30px 15px 30px;
-  border-radius: 10px;
+  border-radius: 5px;
   outline-style: outset;
-  outline-width: 6px;
-  outline-color: rgb(255, 237, 205);
+  outline-width: 4px;
+  outline-color: rgb(255, 245, 205);
   position: relative;
   font-weight: 400;
+}
+
+#strings-container {
+  margin: 0% 10% 0% 10%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column-reverse;
+  align-content: center;
+  flex-wrap: wrap;
+}
+
+#strings-container .container {
+  margin: 10px;
+}
+
+#strings-container p {
+  padding: 2%;
 }
 
 .form-group {
@@ -47,7 +81,8 @@ main {
 .currency-code {
   position: absolute;
   left: 8px;
-  top: 7px;
+  top: 8.5px;
+  color: rgb(103, 103, 103);
 }
 
 input {
@@ -84,24 +119,37 @@ select {
   box-shadow: outset;
 }
 
+.card-buttons {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 button {
   width: auto;
   height: auto;
+  padding: 10px 15px 10px 15px;
   font-weight: bolder;
-  padding: 5px 10px 5px 10px;
-  border: outset;
-  border-color: rgb(147, 157, 140);
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 15px;
   background: #3f7552;
-  position: relative;
-  left: 33%
+  color: rgb(255, 255, 255);
+  margin: 0 10% 0 10%;
 }
 
 button:hover {
-  border: inset;
-  border-color: rgb(147, 157, 140);
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
-  background: #45624f;
+  color: #3f7552;
+  outline: auto;
+  outline-offset: 54cap;
+  background: rgb(255, 245, 232);
+}
+
+details summary {
+  color: #274933;
+  padding-bottom: 2%;
+}
+
+details[open] summary {
+  opacity: 20%;
 }

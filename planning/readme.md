@@ -35,7 +35,7 @@ TO CODE:
 * "Add New Set" button will add a new object to an array to describe a set of strings, sent in through a form
    
    { 
-     brandName: string (REQUIRED)
+     brand: string (REQUIRED)
      imgURL: string 
      date: string ? (REQUIRED)
      tension: string 
