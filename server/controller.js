@@ -48,4 +48,9 @@ module.exports = {
     sets.splice(index, 1);
     res.status(200).send(sets);
   },
+
+  updateSet: (req, res) => {
+    let { id } = req.params;
+
+  }
 };

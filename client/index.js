@@ -2,6 +2,7 @@ const setsBaseURL = `http://localhost:4444/api/sets`;
 
 const form = document.getElementById("form");
 const stringsContainer = document.getElementById("strings-container");
+let updateBtn;
 let isUpdating = false;
 
 const setsCallback = ({ data: sets }) => displaySets(sets);
@@ -13,8 +14,10 @@ const createSet = (body) =>
   axios.post(setsBaseURL, body).then(setsCallback).catch(errCallback);
 const deleteSet = (id) =>
   axios.delete(`${setsBaseURL}/${id}`).then(setsCallback).catch(errCallback);
+const updateSet = (id) =>
+  axios.put(`${setsBaseURL}/${id}`).then(setsCallback).catch(errCallback);
 
-function submitHandler(e) {
+function submitHandlerAdd(e) {
   e.preventDefault();
 
   let brand = document.forms.form.brand.value;
@@ -41,12 +44,13 @@ function submitHandler(e) {
   }
 }
 
-form.addEventListener("submit", submitHandler);
+form.addEventListener("submit", submitHandlerAdd);
 
 function createSetCard(set) {
-  const setCard = document.createElement("div");
-  setCard.classList.add("container");
-  setCard.innerHTML = `<details><summary>${set.brand} — ${set.date}</summary>
+  const setInfoCard = document.createElement("div");
+  setInfoCard.classList.add(`container`);
+  setInfoCard.setAttribute(`id`, `${set.id}`);
+  setInfoCard.innerHTML = `<details id="string-set"><summary>${set.brand} — ${set.date}</summary>
   <p class="brand"><span class="label">BRAND: </span>${set.brand}</p>
   <p class="date"><span class="label">DATE PUT ON: </span>${set.date}</p>
   <p class="price"><span class="label">PRICE: </span>$${set.price}</p>
@@ -55,11 +59,93 @@ function createSetCard(set) {
   <p class="rating"><span class="label">RATING: </span>${set.rating}</p>
   <p class="notes"><span class="label">NOTES: </span>${set.userNotes}</p>
   <div class="card-buttons">
-  <button id="update">UPDATE</button>
+  <button id="update-${set.id}">UPDATE</button>
   <button id="delete" onclick="deleteSet(${set.id})">DELETE</button>
   </div></details>`;
 
-  stringsContainer.appendChild(setCard);
+  const setEditCard = document.createElement("div");
+  setEditCard.classList.add(`hidden`);
+  setEditCard.setAttribute(`id`, `edit-${set.id}`);
+
+  setEditCard.innerHTML = `<details id="edit-set" open><summary>${set.brand} — ${set.date}</summary>
+  <form name="update" id="update-form-${set.id}">
+  <p class="brand"><span class="label">BRAND: </span><input type='text' value="${set.brand}"/></p>
+
+  <p class="date"><span class="label">DATE PUT ON: </span><input type='text' value='${set.date}'</p>
+  
+  <p class="price"><span class="label">PRICE: </span><div class="currency-wrap">
+  <span class="currency-code">$</span>
+  <input
+    id="price"
+    type="number"
+    step=".01"
+    min="0"
+    name="price"
+    value="${set.price}"
+    />
+  </div></p>
+  
+  <p class="gauge"><span class="label">STRING GAUGE: </span><select name="gauge">
+    <option>${set.gauge}</option>
+    <option>Weich</option>
+    <option>Medium</option>
+    <option>Stark</option>
+  </select></p>
+
+  <p class="strings"><span class="label">STRING(S): </span><select name="strings">
+    <option>${set.strings}</options>
+    <option>Set</option>
+    <option>C</option>
+    <option>G</option>
+    <option>D</option>
+    <option>A</option>
+  </select></p>
+
+  <p class="rating"><span class="label">RATING: </span><select name="rating">
+  <option>${set.rating}</option>
+    <option>★</option>
+    <option>★★</option>
+    <option>★★★</option>
+    <option>★★★★</option>
+    <option>★★★★★</option>
+  </select></p>
+
+  <p class="notes"><span class="label">NOTES: </span><textarea>${set.userNotes}</textarea></p>
+
+  <div class="card-buttons">
+    <button id="save-${set.id}">SAVE</button>
+    <button id="cancel-${set.id}">CANCEL</button>
+  </div></form></details>`;
+
+  stringsContainer.appendChild(setInfoCard);
+  stringsContainer.appendChild(setEditCard);
+
+  updateBtn = document.getElementById(`update-${set.id}`);
+  updateBtn.addEventListener("click", () => setEdit(set.id));
+
+  cancelBtn = document.getElementById(`cancel-${set.id}`);
+  cancelBtn.addEventListener("click", () => setInfo(set.id));
+
+  saveBtn = document.getElementById(`save-${set.id}`);
+}
+
+function setEdit(id) {
+  const viewCard = document.getElementById(`${id}`);
+  const editCard = document.getElementById(`edit-${id}`);
+
+  viewCard.classList.add("hidden");
+  editCard.classList.add("container");
+  editCard.classList.remove("hidden");
+}
+
+function setInfo(id) {
+  id.preventDefault();
+  const viewCard = document.getElementById(`${id}`);
+  const editCard = document.getElementById(`edit-${id}`);
+
+  viewCard.classList.remove("hidden");
+  editCard.classList.remove("container");
+  editCard.classList.add("hidden");
 }
 
 function displaySets(arr) {

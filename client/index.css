@@ -14,7 +14,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(0, 0, 0);
+  color: rgb(25, 0, 35);
 }
 
 main {
@@ -152,4 +152,8 @@ details summary {
 
 details[open] summary {
   opacity: 20%;
+}
+
+.hidden {
+  display: none;
 }
