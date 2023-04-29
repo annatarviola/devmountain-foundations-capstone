@@ -14,8 +14,8 @@ const createSet = (body) =>
   axios.post(setsBaseURL, body).then(setsCallback).catch(errCallback);
 const deleteSet = (id) =>
   axios.delete(`${setsBaseURL}/${id}`).then(setsCallback).catch(errCallback);
-const updateSet = (id) =>
-  axios.put(`${setsBaseURL}/${id}`).then(setsCallback).catch(errCallback);
+const updateSet = (id, body) =>
+  axios.put(`${setsBaseURL}/${id}`, body).then(setsCallback).catch(errCallback);
 
 function submitHandlerAdd(e) {
   e.preventDefault();
@@ -28,13 +28,18 @@ function submitHandlerAdd(e) {
   let rating = document.forms.form.rating.value;
   let userNotes = document.forms.form.notes.value;
 
+  
+  console.log(date)
+
   if (brand && price && date) {
     price = new Intl.NumberFormat().format(price);
-    date = new Date(date).toLocaleDateString("en-us", {
+    date = new Date(date.split('-')).toLocaleDateString("en-us", {
       year: "numeric",
       month: "long",
       day: "numeric",
     });
+
+    console.log(date)
 
     let formData = { brand, price, gauge, strings, rating, date, userNotes };
     createSet(formData);
@@ -68,31 +73,33 @@ function createSetCard(set) {
   setEditCard.setAttribute(`id`, `edit-${set.id}`);
 
   setEditCard.innerHTML = `<details id="edit-set" open><summary>${set.brand} — ${set.date}</summary>
-  <form name="update" id="update-form-${set.id}">
-  <p class="brand"><span class="label">BRAND: </span><input type='text' value="${set.brand}"/></p>
+  <form name="update">
+  <p class="brand"><span class="label">BRAND: </span><input type='text' name='brand' id="brand-${set.id}" value="${set.brand}"/></p>
 
-  <p class="date"><span class="label">DATE PUT ON: </span><input type='text' value='${set.date}'</p>
+  <p class="date"><span class="label">DATE PUT ON: </span><input type='text' name='date' id='date-${set.id}' value='${set.date}'</p>
   
-  <p class="price"><span class="label">PRICE: </span><div class="currency-wrap">
-  <span class="currency-code">$</span>
+  <p class="price"><span class="label">PRICE: </span></p>
+  <div class="currency-wrap">
+  <span class="currency-code-edit">$</span>
   <input
-    id="price"
+    class="price-edit"
+    id="price-${set.id}"
     type="number"
     step=".01"
     min="0"
     name="price"
     value="${set.price}"
     />
-  </div></p>
+  </div>
   
-  <p class="gauge"><span class="label">STRING GAUGE: </span><select name="gauge">
+  <p class="gauge"><span class="label">STRING GAUGE: </span><select name="gauge" id="gauge-${set.id}">
     <option>${set.gauge}</option>
     <option>Weich</option>
     <option>Medium</option>
     <option>Stark</option>
   </select></p>
 
-  <p class="strings"><span class="label">STRING(S): </span><select name="strings">
+  <p class="strings"><span class="label">STRING(S): </span><select name="strings" id="strings-${set.id}">
     <option>${set.strings}</options>
     <option>Set</option>
     <option>C</option>
@@ -101,7 +108,7 @@ function createSetCard(set) {
     <option>A</option>
   </select></p>
 
-  <p class="rating"><span class="label">RATING: </span><select name="rating">
+  <p class="rating"><span class="label">RATING: </span><select name="rating" id="rating-${set.id}">
   <option>${set.rating}</option>
     <option>★</option>
     <option>★★</option>
@@ -110,11 +117,11 @@ function createSetCard(set) {
     <option>★★★★★</option>
   </select></p>
 
-  <p class="notes"><span class="label">NOTES: </span><textarea>${set.userNotes}</textarea></p>
+  <p class="notes"><span class="label">NOTES: </span><textarea name='notes' id="notes-${set.id}">${set.userNotes}</textarea></p>
 
   <div class="card-buttons">
     <button id="save-${set.id}">SAVE</button>
-    <button id="cancel-${set.id}">CANCEL</button>
+    <button type="button" id="cancel-${set.id}">CANCEL</button>
   </div></form></details>`;
 
   stringsContainer.appendChild(setInfoCard);
@@ -126,7 +133,24 @@ function createSetCard(set) {
   cancelBtn = document.getElementById(`cancel-${set.id}`);
   cancelBtn.addEventListener("click", () => setInfo(set.id));
 
+  
   saveBtn = document.getElementById(`save-${set.id}`);
+  saveBtn.addEventListener("click", (e) => {
+    e.preventDefault()
+
+    let brand = document.getElementById(`brand-${set.id}`).value;
+    let price = document.getElementById(`price-${set.id}`).value;
+    let date = document.getElementById(`date-${set.id}`).value;
+    let gauge = document.getElementById(`gauge-${set.id}`).value;
+    let strings = document.getElementById(`strings-${set.id}`).value;
+    let rating = document.getElementById(`rating-${set.id}`).value;
+    let userNotes = document.getElementById(`notes-${set.id}`).value;
+  
+    let formData = { brand, price, gauge, strings, rating, date, userNotes };
+  
+    console.log(formData)
+    updateSet(set.id, formData)
+  })
 }
 
 function setEdit(id) {
@@ -139,7 +163,6 @@ function setEdit(id) {
 }
 
 function setInfo(id) {
-  id.preventDefault();
   const viewCard = document.getElementById(`${id}`);
   const editCard = document.getElementById(`edit-${id}`);
 

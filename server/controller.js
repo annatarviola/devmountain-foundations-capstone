@@ -51,6 +51,23 @@ module.exports = {
 
   updateSet: (req, res) => {
     let { id } = req.params;
+    let { brand, price, gauge, strings, rating, date, userNotes } = req.body;
 
-  }
+    console.log(req.body);
+
+    for (let i = 0; i < sets.length; i++) {
+      console.log('for loop', sets[i].id === +id)
+      if (sets[i].id === +id) {
+        sets[i].brand = brand;
+        sets[i].price = price;
+        sets[i].gauge = gauge;
+        sets[i].strings = strings;
+        sets[i].rating = rating;
+        sets[i].date = date;
+        sets[i].userNotes = userNotes;
+        console.log(sets)
+        res.status(200).send(sets);
+      }
+    }
+  },
 };

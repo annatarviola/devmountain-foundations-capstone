@@ -10,7 +10,8 @@ body {
 }
 
 header {
-  margin: 40px;
+  padding: 20px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,6 +24,14 @@ main {
   justify-content: center;
   flex-wrap: wrap;
   align-items: flex-start;
+}
+
+.italic {
+  font-style: italic;
+}
+
+h1 {
+  font-family: "Lora", serif;
 }
 
 h2 {
@@ -41,7 +50,7 @@ h2 {
 
 .container {
   background: linear-gradient(rgb(255, 245, 205), rgb(255, 210, 126));
-  width: 350px;
+  width: 50vh;
   height: auto;
   margin: 30px;
   padding: 15px 30px 15px 30px;
@@ -74,17 +83,6 @@ h2 {
   margin: 15px;
 }
 
-.currency-wrap {
-  position: relative;
-}
-
-.currency-code {
-  position: absolute;
-  left: 8px;
-  top: 8.5px;
-  color: rgb(103, 103, 103);
-}
-
 input {
   font-size: medium;
   width: 92%;
@@ -98,9 +96,32 @@ input {
   box-shadow: outset;
 }
 
+.currency-wrap {
+  position: relative;
+}
+
+.currency-code {
+  position: absolute;
+  left: 8px;
+  top: 8.5px;
+  color: rgb(103, 103, 103);
+}
+
+.currency-code-edit {
+  position: relative;
+  left: 5%;
+  top: 5%;
+  color: rgb(103, 103, 103);
+}
+
 #price {
   padding-left: 20px;
   width: 89%;
+}
+
+.price-edit {
+  padding-left: 20px;
+  width: 85%;
 }
 
 textarea {
@@ -148,6 +169,10 @@ button:hover {
 details summary {
   color: #274933;
   padding-bottom: 2%;
+}
+
+details summary:hover {
+  color:#5a9d71
 }
 
 details[open] summary {
