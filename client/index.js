@@ -28,8 +28,6 @@ function submitHandlerAdd(e) {
   let rating = document.forms.form.rating.value;
   let userNotes = document.forms.form.notes.value;
 
-  
-  console.log(date)
 
   if (brand && price && date) {
     price = new Intl.NumberFormat().format(price);
@@ -38,8 +36,6 @@ function submitHandlerAdd(e) {
       month: "long",
       day: "numeric",
     });
-
-    console.log(date)
 
     let formData = { brand, price, gauge, strings, rating, date, userNotes };
     createSet(formData);
@@ -148,7 +144,6 @@ function createSetCard(set) {
   
     let formData = { brand, price, gauge, strings, rating, date, userNotes };
   
-    console.log(formData)
     updateSet(set.id, formData)
   })
 }
